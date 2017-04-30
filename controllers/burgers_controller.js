@@ -12,24 +12,23 @@ burgerRouter.get("/", function(req, res) {
     
         burger.devoured(function(data) {
             hbsObject.devouredBurgers = data
-            console.log(hbsObject);
             res.render("index", hbsObject);
         });
     });
 });
 
 burgerRouter.post("/", function(req, res) {
-  burger.create(req.body.burger, function() {
-    res.redirect("/");
-  });
+    burger.create(req.body.burger, function() {
+        res.redirect("/");
+    });
 });
 
 burgerRouter.put("/:id", function(req, res) {
-  burger.update({
-    id: req.params.id
-  }, function() {
-    res.redirect("/");
-  });
+    burger.update({
+        id: req.params.id
+    }, function() {
+        res.redirect("/");
+    });
 });
 
 
