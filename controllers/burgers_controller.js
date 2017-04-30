@@ -1,11 +1,35 @@
 var express    = require('express'); 
-var app         = express(); 
-var port = process.env.PORT || 8080;        // set our port
-var something  = require("../models/burger.js");
 
-var appRouter  = express.Router(); 
+var burgerRouter  = express.Router(); 
 
-app.listen(port);
-console.log('Yo port ' + port);
+var burger  = require("../models/burger.js");
 
-exports.router = appRouter;
+burgerRouter.get("/", function(req, res) {
+  burger.notDevoured(function(data) {
+    var hbsObject = {
+      burgers: data
+    };
+    console.log(hbsObject);
+    res.render("index", hbsObject);
+  });
+});
+
+burgerRouter.post("/", function(req, res) {
+  burger.create(req.body.burger, function() {
+    res.redirect("/");
+  });
+});
+
+burgerRouter.put("/:id", function(req, res) {
+  burger.update({
+    id: req.params.id
+  }, function() {
+    res.redirect("/");
+  });
+});
+
+
+// Export routes for server.js to use.
+module.exports = burgerRouter;
+
+

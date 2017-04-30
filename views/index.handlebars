@@ -1,29 +1,36 @@
-<h1>Burger Time</h1>
+<img src="burger.png" alt="Tasty Burger" height="639" width="473">
 
+<h1>Eat-Da-Burger!</h1>
+
+<p>Burgers - Yay!</p>
 <ul>
   {{#each burgers}}
     <li>
       <p>
-        {{this.id}}. {{this.burger}}
+        {{this.id}}. {{this.burger_name}}
 
-        <form action="/{{this.id}}?_method=DELETE" method="POST">
+        <form action="/{{this.id}}?_method=PUT" method="POST">
           <input type="hidden" name="id" value="{{this.id}}">
-          <button type="submit">Move Burger!</button>
+          <button type="submit">Devour it!</button>
         </form>
       </p>
     </li>
   {{/each}}
 </ul>
 
-<h2>Create a Movie</h2>
+<p>Devoured Burgers - Yum!</p>
+<ul>
+  {{#each devouredburgers}}
+    <li>
+      <p>
+        {{this.burger_name}}. {{this.burger_name}}
+      </p>
+    </li>
+  {{/each}}
+</ul>
+
 <form method="POST" action="/" class="button-size">
 	<textarea type="text" name="burger"></textarea>
 	<button type="submit">Save Burger!</button>
 </form>
-
-<h2>Update a Plan</h2>
-<form action="/?_method=PUT" method="POST" class="button-size">
-  <input type="text" name="id" placeholder="id">
-	<textarea type="text" name="burger" placeholder="burger"></textarea>
-	<button type="submit">Update Burger!</button>
-</form>
+<p>Enter a burger you want to eat. Click the "Submit" button.</p>

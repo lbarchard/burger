@@ -1,7 +1,7 @@
 var mysql       = require("mysql");
 var secureInfo  = require("./secureInfo.js");
 
-var BurgersDB = mysql.createConnection({
+var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
@@ -9,7 +9,14 @@ var BurgersDB = mysql.createConnection({
   database: "burgers_db"
 });
 
-var dbConnection = BurgersDB.connect(function(err) {
-  if (err) throw err;
+// Make connection.
+connection.connect(function(err) {
+  if (err) {
+    console.error("error connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id " + connection.threadId);
 });
-exports.dbConnection = dbConnection;
+
+// Export connection for our ORM to use.
+module.exports = connection;
