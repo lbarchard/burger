@@ -8,6 +8,11 @@ var burger = {
       cb(res);
     });
   },
+  devoured: function(cb) {
+    orm.selectByDevoured(1, function(res) {
+      cb(res);
+    });
+  },
   // The variables cols and vals are arrays.
   create: function(burger, cb) {
     orm.create(burger, function(res) {

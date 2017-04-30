@@ -4,7 +4,7 @@
 
 <p>Burgers - Yay!</p>
 <ul>
-  {{#each burgers}}
+  {{#each availableBurgers}}
     <li>
       <p>
         {{this.id}}. {{this.burger_name}}
@@ -20,10 +20,10 @@
 
 <p>Devoured Burgers - Yum!</p>
 <ul>
-  {{#each devouredburgers}}
+  {{#each devouredBurgers}}
     <li>
       <p>
-        {{this.burger_name}}. {{this.burger_name}}
+        {{this.id}}. {{this.burger_name}}
       </p>
     </li>
   {{/each}}
